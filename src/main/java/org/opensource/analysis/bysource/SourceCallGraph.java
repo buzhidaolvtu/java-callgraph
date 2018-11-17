@@ -1,4 +1,4 @@
-package org.opensource.analysis;
+package org.opensource.analysis.bysource;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -9,7 +9,7 @@ import org.antlr4.java.JavaParser;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-public class CallGraph {
+public class SourceCallGraph {
 
     public static void main(String[] args) throws IOException {
         String sFile = "/Users/lvtu/workspace/java-callgraph/src/main/java/org/opensource/analysis/CallGraph.java";

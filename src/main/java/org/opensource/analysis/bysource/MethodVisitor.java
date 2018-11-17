@@ -1,4 +1,4 @@
-package org.opensource.analysis;
+package org.opensource.analysis.bysource;
 
 import org.antlr4.java.JavaBaseVisitor;
 import org.antlr4.java.JavaParser;
