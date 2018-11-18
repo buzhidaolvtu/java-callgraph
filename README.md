@@ -40,7 +40,7 @@ ClassLoader
 ResolvedClassTable
 ResolvedMethodTable
 CallGraph:method --ref--> method
-怎样表达两个方法的引用关系，或者说怎样描绘这个graph？
+怎样表达两个方法的引用关系，或者说用怎样的数据结构描绘这个graph？
 
 
 resolve class(interface or implementation class)
