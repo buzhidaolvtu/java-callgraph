@@ -41,6 +41,9 @@ ResolvedClassTable
 ResolvedMethodTable
 CallGraph:method --ref--> method
 怎样表达两个方法的引用关系，或者说用怎样的数据结构描绘这个graph？
+methodA
+    ref call-ref
+            ref methodB
 
 
 resolve class(interface or implementation class)
