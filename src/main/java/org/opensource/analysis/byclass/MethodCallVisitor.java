@@ -13,14 +13,6 @@ public class MethodCallVisitor extends MethodVisitor {
         super(Opcodes.ASM7);
     }
 
-    public MethodCallVisitor(int api) {
-        super(api);
-    }
-
-    public MethodCallVisitor(int api, MethodVisitor methodVisitor) {
-        super(api, methodVisitor);
-    }
-
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String descriptor, boolean isInterface) {
         if (name.equals("<init>") || owner.startsWith("java")) {
@@ -28,5 +20,15 @@ public class MethodCallVisitor extends MethodVisitor {
             return;
         }
         logger.info("-> {}.{}", owner, name);
+    }
+
+    @Override
+    public void visitCode() {
+        super.visitCode();
+    }
+
+    @Override
+    public void visitMaxs(int maxStack, int maxLocals) {
+        super.visitMaxs(maxStack, maxLocals);
     }
 }

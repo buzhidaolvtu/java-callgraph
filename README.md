@@ -10,7 +10,7 @@ package.class.method
 		->package.class.method
 
 
-2.sp search -cp -cp [classpath] package.class.method
+2.sp search -cp [classpath] package.class.method
 package.class.method
 	<-package.class.method
 		<-package.class.method

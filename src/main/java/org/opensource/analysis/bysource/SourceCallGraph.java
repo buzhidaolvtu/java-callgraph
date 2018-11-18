@@ -22,5 +22,11 @@ public class SourceCallGraph {
         System.out.println(hashCode);
         MethodVisitor methodVisitor = new MethodVisitor();
         tree.accept(methodVisitor);
+
+        selfCall();
     }
+
+    private static void selfCall() {
+    }
+
 }
