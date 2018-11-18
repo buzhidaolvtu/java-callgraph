@@ -32,7 +32,17 @@ callgraph实现方法：
 5.end until some call terminal methods
 
 analysis:
-1.怎样判断方法属于哪一个类
+ClassResolver.resolveClass(class)
+    ClassVisitor
+MethodResolver.resolveMethod(method) => ClassResolver.resolveClass(class) => MethodResolver.resolveMethod(method)
+    MethodVisitor
+ClassLoader
+ResolvedClassTable
+ResolvedMethodTable
+CallGraph:method --ref--> method
+怎样表达两个方法的引用关系，或者说怎样描绘这个graph？
+
+
 resolve class(interface or implementation class)
 resolve method
 
