@@ -3,17 +3,20 @@ package org.opensource.analysis.byclass;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.nio.file.Paths;
 
 public class ClassCallGraph {
 
     public static void main(String[] args) throws IOException {
-        String sFile = "/Users/lvtu/workspace/java-callgraph/target/classes/org/opensource/analysis/bysource/SourceCallGraph.class";
-        File file = new File(sFile);
-        FileInputStream inputStream = new FileInputStream(file);
-        ClassReader cr = new ClassReader(inputStream);
+        URL url = Paths.get("/Users/lvtu/workspace/java-callgraph/target/classes").toUri().toURL();
+        ClassLoader cl = new URLClassLoader(new URL[]{url});
+        InputStream ins = cl.getResourceAsStream("org/opensource/analysis/bysource/SourceCallGraph.class");
+
+        ClassReader cr = new ClassReader(ins);
 
         ClassVisitor cw = new ClassCallVisitor();
         cr.accept(cw, ClassReader.EXPAND_FRAMES);

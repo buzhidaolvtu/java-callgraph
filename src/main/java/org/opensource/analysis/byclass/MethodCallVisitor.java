@@ -23,11 +23,10 @@ public class MethodCallVisitor extends MethodVisitor {
 
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String descriptor, boolean isInterface) {
-//        logger.info("opcode:{},owner:{},name:{},descriptor:{},isInterface:{}", opcode, owner, name, descriptor, isInterface);
         if (name.equals("<init>") || owner.startsWith("java")) {
             super.visitMethodInsn(opcode, owner, name, descriptor, isInterface);
             return;
         }
-        logger.info("invoke {}.{}", owner, name);
+        logger.info("-> {}.{}", owner, name);
     }
 }
