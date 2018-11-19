@@ -46,7 +46,4 @@ methodA
     ref call-ref
             ref methodB
 
-
-resolve class(interface or implementation class)
-resolve method
 ```
