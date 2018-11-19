@@ -46,4 +46,6 @@ methodA
     ref call-ref
             ref methodB
 
+public <T,K> T void(K parameter);
+
 ```
