@@ -6,6 +6,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.commons.lang3.StringUtils;
+import org.opensource.analysis.classloader.ClassGraphClassLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,12 +19,23 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 
-public class ClassGraph {
+public class ClassGraphParser {
 
     public static void main(String[] args) throws IOException {
         String cp = "/Users/lvtu/workspace/java-callgraph/target/classes/,/Users/lvtu/workspace/sandbox-boot-agent/sandbox-boot-loader/target/classes,/Users/lvtu/.m2/repository/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar";
-        List<String> allClasses = new ClassGraph().findAllClasses(parseToUrls(cp));
+        List<URL> urls = parseToUrls(cp);
+        List<String> allClasses = new ClassGraphParser().findAllClasses(urls);
+        ClassGraphClassLoader classGraphClassLoader = new ClassGraphClassLoader(toUrlArray(urls));
+
         System.out.println(allClasses);
+    }
+
+    public static URL[] toUrlArray(List<URL> urls) {
+        URL[] urlArr = new URL[urls.size()];
+        for (int i = 0; i < urls.size(); i++) {
+            urlArr[i] = urls.get(i);
+        }
+        return urlArr;
     }
 
     private static List<URL> parseToUrls(String classpath) {

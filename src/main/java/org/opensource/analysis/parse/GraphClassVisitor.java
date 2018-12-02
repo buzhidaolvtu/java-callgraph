@@ -1,16 +1,15 @@
-package org.opensource.analysis.byclass;
+package org.opensource.analysis.parse;
 
-import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ClassCallVisitor extends ClassVisitor {
+public class GraphClassVisitor extends org.objectweb.asm.ClassVisitor {
 
-    private final static Logger logger = LoggerFactory.getLogger(ClassCallVisitor.class);
+    private final static Logger logger = LoggerFactory.getLogger(GraphClassVisitor.class);
 
-    public ClassCallVisitor() {
+    public GraphClassVisitor() {
         super(Opcodes.ASM7);
     }
 
@@ -22,8 +21,7 @@ public class ClassCallVisitor extends ClassVisitor {
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
-        logger.info("method name:{}", name);
-        return new MethodCallVisitor();
+        return new GraphMethodVisitor();
     }
 
 
