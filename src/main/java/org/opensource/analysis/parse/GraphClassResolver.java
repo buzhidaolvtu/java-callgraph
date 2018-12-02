@@ -7,8 +7,12 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
+import org.opensource.analysis.byclass.ClassCallVisitor;
+import org.opensource.analysis.classloader.ClassGraphClassLoader;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Collection;
@@ -39,11 +43,21 @@ public class GraphClassResolver {
     }
 
     public void resolveAllClasses() {
-        List<URL> urlList = parseToUrls(classpath);
-        List<String> allClasses = findAllClasses(urlList);
+        try {
+            List<URL> urlList = parseToUrls(classpath);
+            List<String> allClasses = findAllClasses(urlList);
 
-
-        URL[] urls = toUrlArray(urlList);
+            URL[] urls = toUrlArray(urlList);
+            ClassLoader cl = new ClassGraphClassLoader(urls);
+            for (int i = 0; i < allClasses.size(); i++) {
+                InputStream ins = cl.getResourceAsStream(allClasses.get(i));
+                ClassReader cr = new ClassReader(ins);
+                ClassVisitor cw = new ClassCallVisitor();
+                cr.accept(cw, ClassReader.EXPAND_FRAMES);
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     public static URL[] toUrlArray(List<URL> urls) {
