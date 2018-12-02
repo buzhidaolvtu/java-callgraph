@@ -13,4 +13,16 @@ public class ClassInfo {
 
     private List<MethodInfo> methods = new ArrayList();
 
+    public ClassInfo(int access, String name, String signature, String superName, String[] interfaces) {
+        this.access = access;
+        this.name = name;
+        this.signature = signature;
+        this.superName = superName;
+        this.interfaces = interfaces;
+    }
+
+    public void addMethod(MethodInfo method) {
+        methods.add(method);
+    }
+
 }

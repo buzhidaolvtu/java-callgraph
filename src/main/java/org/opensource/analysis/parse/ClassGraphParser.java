@@ -26,8 +26,6 @@ public class ClassGraphParser {
         List<URL> urls = parseToUrls(cp);
         List<String> allClasses = new ClassGraphParser().findAllClasses(urls);
         ClassGraphClassLoader classGraphClassLoader = new ClassGraphClassLoader(toUrlArray(urls));
-
-        System.out.println(allClasses);
     }
 
     public static URL[] toUrlArray(List<URL> urls) {

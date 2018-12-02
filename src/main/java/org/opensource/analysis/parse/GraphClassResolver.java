@@ -10,10 +10,15 @@ public class GraphClassResolver {
 
     private ResolvedTable resolvedTable;
 
-    public void resolveClass(String className){
-        if(resolvedTable.containsClass(className)){
+    public void resolveClass(String className) {
+        if (resolvedTable.containsClass(className)) {
             return;
         }
+    }
+
+    public void resolveAllClasses() {
 
     }
+
+
 }
