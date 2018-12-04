@@ -23,6 +23,30 @@ public class ClassInfo {
 
     public void addMethod(MethodInfo method) {
         methods.add(method);
+        method.setOwnerClassInfo(this);
     }
 
+    public int getAccess() {
+        return access;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public String getSuperName() {
+        return superName;
+    }
+
+    public String[] getInterfaces() {
+        return interfaces;
+    }
+
+    public List<MethodInfo> getMethods() {
+        return methods;
+    }
 }

@@ -23,14 +23,4 @@ public class GraphMethodVisitor extends MethodVisitor {
         methodInfo.addMethodRef(new MethodrefInfo(owner, name, descriptor, isInterface));
         logger.info("-> {}.{}", owner, name);
     }
-
-    @Override
-    public void visitCode() {
-        super.visitCode();
-    }
-
-    @Override
-    public void visitMaxs(int maxStack, int maxLocals) {
-        super.visitMaxs(maxStack, maxLocals);
-    }
 }

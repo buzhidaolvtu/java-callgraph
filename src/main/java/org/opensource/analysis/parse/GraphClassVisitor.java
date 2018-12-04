@@ -15,8 +15,9 @@ public class GraphClassVisitor extends org.objectweb.asm.ClassVisitor {
 
     private GraphClassResolver classResolver;
 
-    public GraphClassVisitor() {
+    public GraphClassVisitor(GraphClassResolver classResolver) {
         super(Opcodes.ASM7);
+        this.classResolver = classResolver;
     }
 
     @Override
@@ -32,5 +33,9 @@ public class GraphClassVisitor extends org.objectweb.asm.ClassVisitor {
         return new GraphMethodVisitor(methodInfo);
     }
 
-
+    @Override
+    public void visitEnd() {
+        super.visitEnd();
+        classResolver.getResolvedTable().addClass(classInfo);
+    }
 }

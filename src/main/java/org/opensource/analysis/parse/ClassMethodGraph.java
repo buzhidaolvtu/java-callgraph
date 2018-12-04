@@ -1,15 +1,19 @@
 package org.opensource.analysis.parse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.opensource.analysis.parse.structure.ClassInfo;
-
-import java.util.List;
 
 public class ClassMethodGraph implements ICallGraph {
 
-    private List<ClassInfo> classInfoList;
+    private GraphClassResolver graphClassResolver;
+
+    public ClassMethodGraph(GraphClassResolver graphClassResolver) {
+        this.graphClassResolver = graphClassResolver;
+    }
 
     @Override
     public void callGraph(String className, String method) {
+        ClassInfo classInfo = graphClassResolver.getResolvedTable().getResolvedClassesMap().get(StringUtils.replace(className, ".", "/"));
 
     }
 

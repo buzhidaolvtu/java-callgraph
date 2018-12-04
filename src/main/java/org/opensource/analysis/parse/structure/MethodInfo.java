@@ -5,6 +5,7 @@ import java.util.List;
 
 public class MethodInfo {
 
+    private ClassInfo ownerClassInfo;
     private int access;
     private String name;
     private String descriptor;
@@ -23,5 +24,37 @@ public class MethodInfo {
 
     public void addMethodRef(MethodrefInfo methodref) {
         methodrefInfos.add(methodref);
+    }
+
+    public ClassInfo getOwnerClassInfo() {
+        return ownerClassInfo;
+    }
+
+    public void setOwnerClassInfo(ClassInfo ownerClassInfo) {
+        this.ownerClassInfo = ownerClassInfo;
+    }
+
+    public int getAccess() {
+        return access;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescriptor() {
+        return descriptor;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public String[] getExceptions() {
+        return exceptions;
+    }
+
+    public List<MethodrefInfo> getMethodrefInfos() {
+        return methodrefInfos;
     }
 }

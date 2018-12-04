@@ -8,7 +8,6 @@ import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
-import org.opensource.analysis.byclass.ClassCallVisitor;
 import org.opensource.analysis.classloader.ClassGraphClassLoader;
 
 import java.io.File;
@@ -26,14 +25,15 @@ public class GraphClassResolver {
 
     private ClassLoader classLoader;
 
-    private ClassReader classReader;
-
     private ResolvedTable resolvedTable;
 
     private String classpath;
 
     public GraphClassResolver(String cp) {
         this.classpath = cp;
+        List<URL> urlList = parseToUrls(cp);
+        classLoader = new ClassGraphClassLoader(toUrlArray(urlList));
+        resolvedTable = new ResolvedTable();
     }
 
     public void resolveClass(String className) {
@@ -47,12 +47,10 @@ public class GraphClassResolver {
             List<URL> urlList = parseToUrls(classpath);
             List<String> allClasses = findAllClasses(urlList);
 
-            URL[] urls = toUrlArray(urlList);
-            ClassLoader cl = new ClassGraphClassLoader(urls);
             for (int i = 0; i < allClasses.size(); i++) {
-                InputStream ins = cl.getResourceAsStream(allClasses.get(i));
+                InputStream ins = classLoader.getResourceAsStream(allClasses.get(i));
                 ClassReader cr = new ClassReader(ins);
-                ClassVisitor cw = new ClassCallVisitor();
+                ClassVisitor cw = new GraphClassVisitor(this);
                 cr.accept(cw, ClassReader.EXPAND_FRAMES);
             }
         } catch (Exception ex) {
@@ -129,4 +127,15 @@ public class GraphClassResolver {
     }
 
 
+    public ClassLoader getClassLoader() {
+        return classLoader;
+    }
+
+    public ResolvedTable getResolvedTable() {
+        return resolvedTable;
+    }
+
+    public String getClasspath() {
+        return classpath;
+    }
 }
