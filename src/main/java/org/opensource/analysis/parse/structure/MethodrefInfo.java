@@ -9,6 +9,7 @@ public class MethodrefInfo {
     private String name;
     private String descriptor;
     private boolean isInterface;
+    private boolean resolvedResult;
 
     public MethodrefInfo(int opcode, String owner, String name, String descriptor, boolean isInterface) {
         this.opcode = opcode;
@@ -54,7 +55,11 @@ public class MethodrefInfo {
         return descriptor;
     }
 
-    public boolean isInterface() {
-        return isInterface;
+    public boolean isResolvedResult() {
+        return resolvedResult;
+    }
+
+    public void setResolvedResult(boolean resolvedResult) {
+        this.resolvedResult = resolvedResult;
     }
 }
