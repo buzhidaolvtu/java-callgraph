@@ -29,16 +29,30 @@ public class GraphClassResolver {
 
     private String classpath;
 
+    private GraphMethodResolver methodResolver;
+
     public GraphClassResolver(String cp) {
         this.classpath = cp;
         List<URL> urlList = parseToUrls(cp);
         classLoader = new ClassGraphClassLoader(toUrlArray(urlList));
         resolvedTable = new ResolvedTable();
+        methodResolver = new GraphMethodResolver(this);
     }
 
-    public void resolveClass(String className) {
+    public boolean resolveClass(String className) {
         if (resolvedTable.containsClass(className)) {
-            return;
+            return true;
+        }
+        try {
+            InputStream resourceAsStream = classLoader.getResourceAsStream(className + ".class");
+            ClassReader cr = new ClassReader(resourceAsStream);
+            ClassVisitor cw = new GraphClassVisitor(this);
+            cr.accept(cw, ClassReader.EXPAND_FRAMES);
+            return true;
+        } catch (Exception ex) {
+            resolvedTable.addFailedClass(className);
+            ex.printStackTrace();
+            return false;
         }
     }
 

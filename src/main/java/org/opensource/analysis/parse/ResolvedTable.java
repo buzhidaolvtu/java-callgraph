@@ -11,6 +11,8 @@ public class ResolvedTable {
 
     private Set<String> resolvedClassesSet = new HashSet<>();
 
+    private Set<String> failedResolvedClassesSet = new HashSet<>();
+
     private Set<String> resolvedMethodSet = new HashSet<>();
 
     private Map<String, ClassInfo> resolvedClassesMap = new HashMap<>();
@@ -19,10 +21,12 @@ public class ResolvedTable {
         resolvedClassesMap.put(classInfo.getName(), classInfo);
     }
 
-
+    public void addFailedClass(String className) {
+        failedResolvedClassesSet.add(className);
+    }
 
     public boolean containsClass(String className) {
-        return resolvedClassesSet.contains(className);
+        return resolvedClassesMap.containsKey(className);
     }
 
     public void addMethod() {

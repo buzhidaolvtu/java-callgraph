@@ -20,7 +20,7 @@ public class GraphMethodVisitor extends MethodVisitor {
 
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String descriptor, boolean isInterface) {
-        methodInfo.addMethodRef(new MethodrefInfo(owner, name, descriptor, isInterface));
+        methodInfo.addMethodRef(new MethodrefInfo(opcode,owner, name, descriptor, isInterface));
         logger.info("-> {}.{}", owner, name);
     }
 }
