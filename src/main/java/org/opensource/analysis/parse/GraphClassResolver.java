@@ -152,4 +152,8 @@ public class GraphClassResolver {
     public String getClasspath() {
         return classpath;
     }
+
+    public GraphMethodResolver getMethodResolver() {
+        return methodResolver;
+    }
 }

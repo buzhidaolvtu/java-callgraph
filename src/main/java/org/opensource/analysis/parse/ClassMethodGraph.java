@@ -25,6 +25,9 @@ public class ClassMethodGraph implements ICallGraph {
         //调用栈并且递归解析
         Optional<MethodInfo> methodInfoOptional = classInfo.getMethods().stream().filter(methodInfo -> methodInfo.getName().equals(method)).findFirst();
         List<MethodrefInfo> methodrefInfos = methodInfoOptional.get().getMethodrefInfos();
+        methodrefInfos.forEach(methodrefInfo -> {
+            graphClassResolver.getMethodResolver().resolveMethodref(methodrefInfo);
+        });
 
     }
 
