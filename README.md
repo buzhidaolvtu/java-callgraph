@@ -63,3 +63,15 @@ analyzer
 基本元素是相同，客观存在的关系是相同的，但是对于不同的要求层次，组织和使用的方式却是不同的，为了让使用起来更加方便，抽象了以上概念。
 即使元素只有0和1，但是也能组合成不同的形式，也就需要层次抽象来帮助管理。
 ```
+
+```text
+resolve ref伪代码：
+function callgraph(ref)
+	resolveMethod(ref)=>class+method+ref_list
+	for each ref in ref_list
+		callgraph(ref)
+
+为了简单化，处理如下：
+1.如果遇到接口interface，不再继续resolve，后续支持；
+2.接口调用可能会形成死循环，这时要break死循环；
+```
