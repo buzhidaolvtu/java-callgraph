@@ -79,7 +79,7 @@ function callgraph(ref)
 1.接口没有实现，需要找到实现
 2.类有子类，使用哪一个实现
 3.怎样避免cycle调用
-4.怎样清除优雅地显示
+4.怎样清楚优雅地显示
 
 类的关系
 resolve和classloader是一对一的关系
