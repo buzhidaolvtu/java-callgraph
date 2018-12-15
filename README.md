@@ -76,10 +76,19 @@ function callgraph(ref)
 2.接口调用可能会形成死循环，这时要break死循环；
 
 难点：
-1.接口没有实现，需要找到实现
-2.类有子类，使用哪一个实现
-3.怎样避免cycle调用
-4.怎样清楚优雅地显示
+1.接口没有body，需要找到实现impl;
+2.类有子类，使用哪一个实现;
+3.怎样避免cycle调用;
+4.怎样清楚优雅地显示;
+interface:
+findDirectSubInterfaces(parameter:interface)
+findSubInterfaces(parameter:interface)
+findDirectImplClasses(parameter:interface)
+findAllImplClasses(parameter:interface)
+impl class:
+findDirectSubClasses(parameter:impl class)
+findAllSubClasses(parameter:impl class)
+
 
 类的关系
 resolve和classloader是一对一的关系
