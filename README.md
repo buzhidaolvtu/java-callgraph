@@ -74,4 +74,14 @@ function callgraph(ref)
 为了简单化，处理如下：
 1.如果遇到接口interface，不再继续resolve，后续支持；
 2.接口调用可能会形成死循环，这时要break死循环；
+
+难点：
+1.接口没有实现，需要找到实现
+2.类有子类，使用哪一个实现
+3.怎样避免cycle调用
+4.怎样清除优雅地显示
+
+类的关系
+resolve和classloader是一对一的关系
+不同的classloader会单独加载class，但是resolve的逻辑是一样的
 ```
