@@ -89,6 +89,12 @@ impl class:
 findDirectSubClasses(parameter:impl class)
 findAllSubClasses(parameter:impl class)
 
+invokeinterface:findDirectImplClasses,findAllImplClasses
+invokevirtual:findDirectSubClasses,findAllSubClasses
+invokestatic:
+invokespecial:
+invokedynamic:略
+
 
 类的关系
 resolve和classloader是一对一的关系
