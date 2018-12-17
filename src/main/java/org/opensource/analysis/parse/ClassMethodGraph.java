@@ -7,10 +7,7 @@ import org.opensource.analysis.parse.structure.MethodrefInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 public class ClassMethodGraph implements ICallGraph {
 
@@ -21,6 +18,8 @@ public class ClassMethodGraph implements ICallGraph {
     public ClassMethodGraph(GraphClassResolver graphClassResolver) {
         this.graphClassResolver = graphClassResolver;
     }
+
+    public static final ThreadLocal<List> stack = ThreadLocal.withInitial(ArrayList::new);
 
     @Override
     public void callGraph(String className, String method) {
