@@ -13,4 +13,7 @@ public interface MethodNode {
 
     List<UnidirectionalMethodEdge> getOutputRefs();
 
+    List<MethodNode> possibleMethodNodes();
+
+    boolean existsMultiImpl();
 }

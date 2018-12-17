@@ -18,4 +18,14 @@ public class PolymorphismNode extends AbstractMethodNode {
     public List<UnidirectionalMethodEdge> getOutputRefs() {
         return super.getOutputRefs();
     }
+
+    @Override
+    public List<MethodNode> possibleMethodNodes() {
+        return possibleNodes;
+    }
+
+    @Override
+    public boolean existsMultiImpl() {
+        return true;
+    }
 }

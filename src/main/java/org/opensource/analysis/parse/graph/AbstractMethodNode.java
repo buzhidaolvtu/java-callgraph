@@ -13,4 +13,14 @@ public abstract class AbstractMethodNode implements MethodNode{
     public List<UnidirectionalMethodEdge> getOutputRefs() {
         return null;
     }
+
+    @Override
+    public List<MethodNode> possibleMethodNodes() {
+        return null;
+    }
+
+    @Override
+    public boolean existsMultiImpl() {
+        return false;
+    }
 }
