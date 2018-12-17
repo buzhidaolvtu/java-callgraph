@@ -81,6 +81,8 @@ function callgraph(ref)
 2.类有子类，使用哪一个实现; (findDirectSubClasses,findAllSubClasses)
 3.怎样避免cycle调用;
 4.怎样清楚优雅地显示;
+5.多态节点的展示方法和数据结构
+
 interface:
 findDirectSubInterfaces(parameter:interface)
 findSubInterfaces(parameter:interface)
@@ -100,4 +102,10 @@ invokedynamic:略
 类的关系
 resolve和classloader是一对一的关系
 不同的classloader会单独加载class，但是resolve的逻辑是一样的
+
+需要补充的算法知识：
+1.环路检测：利用stack追踪调用链，检测环路
+2.图的表达：数据结构
+3.图的展示
+4.图的遍历
 ```
