@@ -11,8 +11,6 @@ public interface MethodNode {
      */
     List<MethodNode> findRefNodes();
 
-    List<UnidirectionalMethodEdge> getOutputRefs();
-
     List<MethodNode> possibleMethodNodes();
 
     boolean existsMultiImpl();

@@ -10,11 +10,6 @@ public abstract class AbstractMethodNode implements MethodNode{
     }
 
     @Override
-    public List<UnidirectionalMethodEdge> getOutputRefs() {
-        return null;
-    }
-
-    @Override
     public List<MethodNode> possibleMethodNodes() {
         return null;
     }
