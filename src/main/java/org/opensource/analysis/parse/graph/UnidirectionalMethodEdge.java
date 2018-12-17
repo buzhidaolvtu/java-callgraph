@@ -1,6 +1,6 @@
 package org.opensource.analysis.parse.graph;
 
-public class UnidirectionalMethodEdge {
+public class UnidirectionalMethodEdge implements MethodEdge {
 
     private String fromClass;
     private String fromMethod;
