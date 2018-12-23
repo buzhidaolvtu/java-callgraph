@@ -11,8 +11,5 @@ public class VirtualMethodNode extends AbstractMethodNode {
         return Lists.newArrayList();
     }
 
-    @Override
-    public List<UnidirectionalMethodEdge> getOutputRefs() {
-        return Lists.newArrayList();
-    }
+
 }
